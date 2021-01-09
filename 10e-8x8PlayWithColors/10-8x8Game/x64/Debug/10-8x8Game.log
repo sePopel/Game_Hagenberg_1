@@ -1,0 +1,7 @@
+﻿  canvas.cpp
+  glad.cpp
+  main.cpp
+  Code wird generiert...
+  LINK : C:\Users\user\Desktop 2.0\Hagenberg\Einführung in die Programmierung\Game\10e-8x8PlayWithColors\10e-8x8PlayWithColors\x64\Debug\10-8x8Game.exe wurde nicht gefunden oder beim letzten inkrementellen Linkvorgang nicht erstellt; vollständiger Link wird durchgeführt.
+LINK : warning LNK4098: Standardbibliothek "MSVCRT" steht in Konflikt mit anderen Bibliotheken; /NODEFAULTLIB:Bibliothek verwenden.
+  10-8x8Game.vcxproj -> C:\Users\user\Desktop 2.0\Hagenberg\Einführung in die Programmierung\Game\10e-8x8PlayWithColors\10e-8x8PlayWithColors\x64\Debug\10-8x8Game.exe
