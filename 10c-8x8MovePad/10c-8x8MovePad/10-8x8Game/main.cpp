@@ -9,6 +9,7 @@
 #endif
 
 #include "canvas.h"
+#include "game_mechanics.h"
 
 bool aPressed = false;
 bool sPressed = false;
@@ -23,6 +24,7 @@ bool sPressed = false;
 #define RESOLUTION_Y	16
 
 int xPad = 4;
+auto old = std::chrono::steady_clock::now();
 
 unsigned char pixels[RESOLUTION_X][RESOLUTION_Y];
 
@@ -54,26 +56,28 @@ void updatePixels()
 	}
 }
 
-int x;
-
 void drawPad() {
 	// remove old Pos
 
 
 	pixels[xPad][0] = 0;
+	auto act = std::chrono::steady_clock::now();
+	double elapsed_time = double(std::chrono::duration_cast <std::chrono::nanoseconds> (act - old).count());
 
 	if (sPressed && xPad < RESOLUTION_X - 1) {
-		x = 0;
-		x++;
-
-		if (x != 0 && x%50== 0 ) {
-		xPad++;
+		if (elapsed_time > 100000000) {
+			xPad++;
+			old = act;
+		}
 	}
-}
 
 	if (aPressed && xPad > 0)
-		xPad--;
-	
+		if (elapsed_time > 100000000) {
+			xPad--;
+			old = act;
+		}
+
+
 	pixels[xPad][0] = 1;
 }
 
