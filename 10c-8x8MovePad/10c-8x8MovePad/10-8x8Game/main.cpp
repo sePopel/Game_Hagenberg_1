@@ -27,6 +27,8 @@ bool b = false;
 #define RESOLUTION_X	16
 #define RESOLUTION_Y	16
 
+#define min(a,b) (((a) < (b)) ? (a) : (b))
+
 int xPad = 8;
 int x_1 = 8;
 int y_1 = 15;
@@ -83,7 +85,248 @@ void updatePixels()
 	{
 		for (int j = 0; j < RESOLUTION_Y; j++)
 		{ 
-			
+			if (pixels[i][j][0] >= 2 && pixels[i][j][1] >= 2) {
+				
+				int r1 = 0;
+				int g1 = 0;
+				int b1 = 0;
+
+				int r2 = 0;
+				int g2 = 0;
+				int b2 = 0;
+				
+				/*if ((pixels[i + 1][j][0] >= 2)) {
+
+					if (pixels[i + 1][j][0] == 2) {
+						r1 = 255;
+					}
+					if (pixels[i + 1][j][0] == 3) {
+						g1 = 255;
+					}
+					if (pixels[i + 1][j][0] == 4) {
+						b1 = 255;
+					}
+					if (pixels[i + 1][j][0] == 5) {
+						r1 = 255;
+						g1 = 255;
+					}
+					if (pixels[i + 1][j][0] == 6) {
+						r1 = 255;
+						b1 = 255;
+					}
+					if (pixels[i + 1][j][0] == 7) {
+						g1 = 255;
+						b1 = 255;
+					}
+
+					if (pixels[i][j][1] == 2) {
+						r2 = 255;
+					}
+					if (pixels[i][j][1] == 3) {
+						g2 = 255;
+					}
+					if (pixels[i][j][1] == 4) {
+						b2 = 255;
+					}
+					if (pixels[i][j][1] == 5) {
+						r2 = 255;
+						g2 = 255;
+					}
+					if (pixels[i][j][1] == 6) {
+						r2 = 255;
+						b2 = 255;
+					}
+					if (pixels[i][j][1] == 7) {
+						g2 = 255;
+						b2 = 255;
+					}
+
+					int a = min(r1 + r2, 255); //Geht im if nicht :/
+					int b = min(g1 + g2, 255);
+					int c = min(b1 + b2, 255);
+
+
+					if (a == 255 && b == 255 && c == 255) {
+						pixels[i][j][0] = 0;
+					}
+					if (a == 255 && b == 0 && c == 0) {
+						pixels[i][j][0] = 2;
+					}
+					if (a == 0 && b == 255 && c == 0) {
+						pixels[i][j][0] = 3;
+					}
+					if (a == 0 && b == 0 && c == 255) {
+						pixels[i][j][0] = 4;
+					}
+					if (a == 255 && b == 255 && c == 0) {
+						pixels[i][j][0] = 5;
+					}
+					if (a == 255 && b == 0 && c == 255) {
+						pixels[i][j][0] = 6;
+					}
+					if (a == 0 && b == 255 && c == 255) {
+						pixels[i][j][0] = 7;
+					}
+				}
+
+				if ((pixels[i - 1][j][0] >= 2)) {
+					if (pixels[i - 1][j][0] == 2) {
+						r1 = 255;
+					}
+					if (pixels[i - 1][j][0] == 3) {
+						g1 = 255;
+					}
+					if (pixels[i - 1][j][0] == 4) {
+						b1 = 255;
+					}
+					if (pixels[i - 1][j][0] == 5) {
+						r1 = 255;
+						g1 = 255;
+					}
+					if (pixels[i - 1][j][0] == 6) {
+						r1 = 255;
+						b1 = 255;
+					}
+					if (pixels[i - 1][j][0] == 7) {
+						g1 = 255;
+						b1 = 255;
+					}
+
+					if (pixels[i][j][1] == 2) {
+						r2 = 255;
+					}
+					if (pixels[i][j][1] == 3) {
+						g2 = 255;
+					}
+					if (pixels[i][j][1] == 4) {
+						b2 = 255;
+					}
+					if (pixels[i][j][1] == 5) {
+						r2 = 255;
+						g2 = 255;
+					}
+					if (pixels[i][j][1] == 6) {
+						r2 = 255;
+						b2 = 255;
+					}
+					if (pixels[i][j][1] == 7) {
+						g2 = 255;
+						b2 = 255;
+					}
+
+					int a = min(r1 + r2, 255); //Geht im if nicht :/
+					int b = min(g1 + g2, 255);
+					int c = min(b1 + b2, 255);
+
+
+					if (a == 255 && b == 255 && c == 255) {
+						pixels[i][j][0] = 0;
+					}
+					if (a == 255 && b == 0 && c == 0) {
+						pixels[i][j][0] = 2;
+					}
+					if (a == 0 && b == 255 && c == 0) {
+						pixels[i][j][0] = 3;
+					}
+					if (a == 0 && b == 0 && c == 255) {
+						pixels[i][j][0] = 4;
+					}
+					if (a == 255 && b == 255 && c == 0) {
+						pixels[i][j][0] = 5;
+					}
+					if (a == 255 && b == 0 && c == 255) {
+						pixels[i][j][0] = 6;
+					}
+					if (a == 0 && b == 255 && c == 255) {
+						pixels[i][j][0] = 7;
+					}
+				}
+
+				*/
+
+				if (pixels[i][j][0] == 2) {
+					r1 = 255;
+				}
+				if (pixels[i][j][0] == 3) {
+					g1 = 255;
+				}
+				if (pixels[i][j][0] == 4) {
+					b1 = 255;
+				}
+				if (pixels[i][j][0] == 5) {
+					r1 = 255;
+					g1 = 255;
+				}
+				if (pixels[i][j][0] == 6) {
+					r1 = 255;
+					b1 = 255;
+				}
+				if (pixels[i][j][0] == 7) {
+					g1 = 255;
+					b1 = 255;
+				}
+				
+
+				if (pixels[i][j][1] == 2) {
+					r2 = 255;
+				}
+				if (pixels[i][j][1] == 3) {
+					g2 = 255;
+				}
+				if (pixels[i][j][1] == 4) {
+					b2 = 255;
+				}
+				if (pixels[i][j][1] == 5) {
+					r2 = 255;
+					g2 = 255;
+				}
+				if (pixels[i][j][1] == 6) {
+					r2 = 255;
+					b2 = 255;
+				}
+				if (pixels[i][j][1] == 7) {
+					g2 = 255;
+					b2 = 255;
+				}
+
+				int a = min(r1 + r2, 255); //Geht im if nicht :/
+				int b = min(g1 + g2, 255);
+				int c = min(b1 + b2, 255);
+
+
+				if (a == 255 && b == 255 && c == 255) {
+					pixels[i][j][0] = 0;
+				}
+				if (a == 255 && b == 0 && c == 0) {
+					pixels[i][j][0] = 2;
+				}
+				if (a == 0 && b == 255 && c == 0) {
+					pixels[i][j][0] = 3;
+				}
+				if (a == 0 && b == 0 && c == 255) {
+					pixels[i][j][0] = 4;
+				}
+				if (a == 255 && b == 255 && c == 0) {
+					pixels[i][j][0] = 5;
+				}
+				if (a == 255 && b == 0 && c == 255) {
+					pixels[i][j][0] = 6;
+				}
+				if (a == 0 && b == 255 && c == 255) {
+					pixels[i][j][0] = 7;
+				}
+				
+				if ((pixels[i + 1][j][0] >= 2)) {
+					pixels[i + 1][j][0] = pixels[i][j][0];
+				}
+
+				if ((pixels[i - 1][j][0] >= 2)) {
+					pixels[i - 1][j][0] = pixels[i][j][0];
+				}
+
+				pixels[i][j][1] = 0;
+			}
+
 			if (pixels[i][j][0] == 2)
 				canvasSetPixel(i, j, 255, 0, 0);
 			if (pixels[i][j][0] == 3)
@@ -116,6 +359,13 @@ void updatePixels()
 		}
 	}
 }
+
+/*void mixing() {
+	if pixels[]
+	
+	(r1, g1, b1) + (r2, g2, b2) =
+		(min(r1 + r2, 256), min(g1 + g2, 256), min(b1 + b2, 256))
+}*/
 
 void drawPad() {
 	// remove old Pos
