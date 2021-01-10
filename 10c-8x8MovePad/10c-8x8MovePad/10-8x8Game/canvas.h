@@ -12,7 +12,6 @@ void canvasClose();
 int canvasUpdate();
 void repaint();
 
-void canvasSetPixel(int x, int y, float value);
 void canvasSetPixel(int x, int y, unsigned char red, unsigned char green, unsigned char blue);
 
 #endif

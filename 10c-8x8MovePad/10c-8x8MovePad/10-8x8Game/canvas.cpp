@@ -256,27 +256,6 @@ int canvasUpdate()
 	return 0;
 }
 
-void canvasSetPixel(int x, int y, float value)
-{
-	if (!window)
-		return;
-
-	if (textureID == ~0x00)
-		return;
-
-	x = max(0, min(x, resX - 1));
-	y = max(0, min(y, resY - 1));
-
-	unsigned char c = (unsigned char)(max(0, min(value * 255, 255)));
-	int idx = x * 3 + (y * (texWidth * 3));
-
-	texData[idx + 0] = 0;
-	texData[idx + 1] = c;
-	texData[idx + 2] = 0;
-
-	dirty = true;
-}
-
 void canvasSetPixel(int x, int y, unsigned char red, unsigned char green, unsigned char blue)
 {
 	if (!window)
