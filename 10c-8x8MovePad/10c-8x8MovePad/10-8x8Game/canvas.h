@@ -5,6 +5,9 @@
 
 extern bool aPressed;
 extern bool sPressed;
+extern bool bPressed;
+extern bool nPressed;
+extern bool mPressed;
 
 int canvasInit(int x, int y, int width, int height, int resolutionX, int resolutionY);
 void canvasClose();

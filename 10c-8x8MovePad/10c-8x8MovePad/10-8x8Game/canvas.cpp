@@ -68,6 +68,23 @@ static void onKey(GLFWwindow* window, int key, int scanCode, int action, int mod
 
 	if (key == GLFW_KEY_S && action == GLFW_RELEASE)
 		sPressed = false;
+
+	if (key == GLFW_KEY_B && action == GLFW_PRESS)
+		bPressed = true;
+
+	if (key == GLFW_KEY_B && action == GLFW_RELEASE)
+		bPressed = false;
+	if (key == GLFW_KEY_N && action == GLFW_PRESS)
+		nPressed = true;
+
+	if (key == GLFW_KEY_N && action == GLFW_RELEASE)
+		nPressed = false;
+
+	if (key == GLFW_KEY_M && action == GLFW_PRESS)
+		mPressed = true;
+
+	if (key == GLFW_KEY_M && action == GLFW_RELEASE)
+		mPressed = false;
 }
 
 static void onChar(GLFWwindow* window, unsigned int c)
