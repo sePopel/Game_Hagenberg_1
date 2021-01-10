@@ -26,7 +26,6 @@ bool sPressed = false;
 int xPad = 8;
 int x_1 = 8;
 int y_1 = 15;
-int color_1 = 0;
 double timeblock = 20;
 double timemove = 10;
 double timepad = 1;
@@ -42,7 +41,9 @@ blockType Nr_6;*/
 auto oldPad = std::chrono::steady_clock::now();
 auto oldblock = std::chrono::steady_clock::now();
 auto oldcopy = std::chrono::steady_clock::now();
-auto oldmove = std::chrono::steady_clock::now();
+//auto oldmove = std::chrono::steady_clock::now();
+
+auto act = (std::chrono::steady_clock::now());
 
 unsigned char pixels[RESOLUTION_X][RESOLUTION_Y];
 unsigned char last[RESOLUTION_Y];
@@ -93,23 +94,22 @@ void drawPad() {
 	// remove old Pos
 
 
-	pixels[xPad][0] = 0;
-	auto actPad = std::chrono::steady_clock::now();
-	double elapsed_time = double(std::chrono::duration_cast <std::chrono::nanoseconds> (actPad - oldPad).count());
+	pixels[xPad][0] = 0;	
+	double elapsed_time = double(std::chrono::duration_cast <std::chrono::nanoseconds> (act - oldPad).count());
 
 	if (sPressed && xPad < RESOLUTION_X - 1) {
 		if (elapsed_time > (timepad) * 100000000) {
 			xPad++;
-			oldPad = actPad;
+			oldPad = act;
 		}
 	}
 
-	if (aPressed && xPad > 0)
+	if (aPressed && xPad > 0) {
 		if (elapsed_time > (timepad) * 100000000) {
 			xPad--;
-			oldPad = actPad;
+			oldPad = act;
 		}
-
+	}
 
 	pixels[xPad][0] = 1;
 }
@@ -124,8 +124,7 @@ bool colorLine16() {
 
 void moveBlocks() {
 	
-	auto newcopy = (std::chrono::steady_clock::now());
-	double elapsed_time = double(std::chrono::duration_cast <std::chrono::nanoseconds> (newcopy - oldcopy).count());
+	double elapsed_time = double(std::chrono::duration_cast <std::chrono::nanoseconds> (act - oldcopy).count());
 
 	if (elapsed_time > (timemove) * 100000000) {
 		for (int j = 1; j < 17; j++) {
@@ -134,33 +133,40 @@ void moveBlocks() {
 				if (j == 16) {
 
 					pixels[i][15] = 0;
+					continue;
 				}
-
 
 				if (j == 1) {
 
 					last[i] = pixels[i][j];
+					continue;
 				}
 
 				pixels[i][j - 1] = pixels[i][j];
 			}
 		}
 
-		oldcopy = newcopy;
+		oldcopy = act;
 	}
 }
 
 void drawBlocks() {
 
-	auto newblock = (std::chrono::steady_clock::now());
-	double elapsed_time_block = double(std::chrono::duration_cast <std::chrono::nanoseconds> (newblock - oldblock).count());
-	double elapsed_time_move = double(std::chrono::duration_cast <std::chrono::nanoseconds> (newblock - oldmove).count());
+	
+	double elapsed_time_block = double(std::chrono::duration_cast <std::chrono::nanoseconds> (act - oldblock).count());
+	//double elapsed_time_move = double(std::chrono::duration_cast <std::chrono::nanoseconds> (act - oldmove).count());
 
-	if (color_1 == 1 || elapsed_time_block > (timeblock) * 100000000) {
+	if (elapsed_time_block > (timeblock) * 100000000) {
 			x_1 = rand() % 16;
-			color_1 = (rand() % 6) + 2;
-			oldblock = newblock;
+			int color_1 = (rand() % 6) + 2;
+			oldblock = act;
 			pixels[x_1][y_1] = color_1;
+
+			
+			if (rand() % 2 == 1) {
+				if (x_1 < RESOLUTION_X-1)
+				pixels[x_1 + 1][y_1] = color_1;
+			}
 	}
 
 	/*if (elapsed_time_move > (timemove) * 100000000) {
@@ -202,10 +208,11 @@ int main(int argc, char* argv[])
 
 	while (canvasUpdate() == 0)
 	{
+		act = std::chrono::steady_clock::now();
 		drawPad();
-
-		moveBlocks();
 		drawBlocks();
+		moveBlocks();
+		
 		
 		
 
